@@ -50,4 +50,21 @@ Router.post('/sub-category', async (request, response) => {
 
 });
 
+Router.get('/:slug', async (request, response) => {
+  try {
+    const { slug } = request.params;
+    console.log(slug);
+    const category = await categoryService.getCategoryBySlug(slug);
+    return response.status(200).json({
+      "category": category
+    });
+
+  } catch (error) {
+    return response.status(500).json({
+      "error": error.message
+    });
+  }
+
+});
+
 module.exports = Router;

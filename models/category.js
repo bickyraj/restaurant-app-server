@@ -6,6 +6,11 @@ const categorySchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  slug: {
+    type: String,
+    unique: true,
+    required: true,
+  },
   parentCategory: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
