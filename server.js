@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 8000
 const AuthRoutes = require('./routes/auth');
 const RoleRoutes = require('./routes/role');
 const CategoryRoutes = require('./routes/category');
+const SubCategoryRoutes = require('./routes/sub-category');
 const { verifyToken } = require('./tools');
 
 try {
@@ -39,9 +40,10 @@ App.use(session({
   }
 }));
 
-App.use('/auth', AuthRoutes);
-App.use('/role', verifyToken, RoleRoutes);
-App.use('/category', verifyToken, CategoryRoutes);
+App.use('/api/auth', AuthRoutes);
+App.use('/api/role', verifyToken, RoleRoutes);
+App.use('/api/category', verifyToken, CategoryRoutes);
+App.use('/api/sub-category', verifyToken, SubCategoryRoutes);
 App.get('/', (request, response) => {
   return response.status(200).send('<h1>Welcome to the restaurant app</h1>');
 });

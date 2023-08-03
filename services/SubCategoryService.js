@@ -11,23 +11,12 @@ class CategoryService {
     }
   }
 
-  async getAllSubCategories() {
-    try {
-      const rootCategories = await Category.find({ parentCategory: null });
-      const rootCategoryIds = rootCategories.map((category) => category._id);
-      return await Category.find({ parentCategory: { $in: rootCategoryIds } });
-    } catch (error) {
-      throw error;
-    }
-  }
-
   async update(id, postData) {
     return await Category.findOneAndUpdate({ _id: id }, postData, { new: true });
   }
   
-  async getCategories(postData) {
+  async getAllSubCategories() {
     try {
-      
       return await Category.find({ parentCategory: null });
     } catch (error) {
       throw error;

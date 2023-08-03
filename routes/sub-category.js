@@ -6,7 +6,7 @@ const categoryService = new CategoryService;
 
 Router.get('/all', async (request, response) => {
   try {
-    const categories = await categoryService.getCategories();
+    const categories = await categoryService.getAllSubCategories();
     return response.status(200).json({
       "data": categories
     });
@@ -50,9 +50,9 @@ Router.put('/:id', async (request, response) => {
 
 Router.post('/', async (request, response) => {
   try {
-    const category = await categoryService.createRootCategory(request.body);
+    const category = await categoryService.createSubCategory(request.body);
     return response.status(200).json({
-      "category": category
+      "data": category
     });
 
   } catch (error) {
